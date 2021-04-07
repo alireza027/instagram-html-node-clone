@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Users</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" />
+
+    <!-- add image icon -->
+    <link rel="icon" type="image/ico" href="http://localhost:5000/img/title-icon/instagram-icon.jpg" />
+</head>
+
+<body>
+    <div class="container-fluid my-3">
+        <h1 class="display-4 text-center mb-3">Show All Users</h1>
+        <a href="/session-destroy" class="btn btn-danger mb-4 px-4 text-center mx-auto d-block">Signup</a>
+        <table id="example" class="table table-striped table-bordered" style="width:100%">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Username</th>
+                    <th>Email</th>
+                    <th>Password</th>
+                    <th>Created_At</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% for(let result of results){ %>
+                <tr>
+                    <td> <%= result._id %> </td>
+                    <td> <%= result.name %> </td>
+                    <td> <%= result.username %> </td>
+                    <td> <%= result.email %> </td>
+                    <td> <%= result.password %> </td>
+                    <td> <%= result.created_user %> </td>
+                </tr>
+                <% } %>
+            </tbody>
+        </table>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#example').DataTable();
+        });
+    </script>
+</body>
+
+</html>

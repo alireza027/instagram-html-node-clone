@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+
+    <!-- styles -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+    <!-- <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/> -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper/css/swiper.min.css">
+
+
+
+    <link rel="stylesheet" href="http://localhost:5000/css/home.css" />
+
+    <!-- add image icon -->
+    <link rel="icon" type="image/ico" href="http://localhost:5000/img/title-icon/instagram-icon.jpg" />
+    <style>
+        .swiper-container {
+            width: 100% !important;
+            height: 450px;
+        }
+
+        .images img {
+            width: 100% !important;
+            height: 100% !important;
+        }
+
+        .last {
+            margin-bottom: 120px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="continer">
+        <!-- body -->
+        <div class="body">
+            <div class="body-section">
+                <div class="body-header container-fluid">
+                    <div class="picture-and-text">
+                        <a href="http://localhost:5000/user-page/<%= username %>"><img
+                                src="http://localhost:5000/uploads/<%= profile_pic %>" alt=""></a>
+                        <a href="http://localhost:5000/user-page/<%= username %>">
+                            <p class="text"> <%= username %> </p>
+                        </a>
+                    </div>
+                    <div class="thriple-point" data-tog="false">
+                        <a href="#"><img src="http://localhost:5000/img/font-awesome/3noghte.svg" alt=""></a>
+                    </div>
+                    <div class="thriple-point-modal">
+                        <a href="#">
+                            <p>Report</p>
+                        </a>
+                        <a href="#">
+                            <p>Copy Url</p>
+                        </a>
+                        <a href="#">
+                            <p>Show Notification</p>
+                        </a>
+                        <a href="#">
+                            <p>Share This Post</p>
+                        </a>
+                        <a href="#">
+                            <p>Unfollow</p>
+                        </a>
+                        <a href="#">
+                            <p>Not Show Him</p>
+                        </a>
+                    </div>
+                </div>
+                <div class="body-content">
+                    <div class="swiper-container">
+                        <div class="swiper-wrapper">
+                            <% for(let result of resultSelect.pictures){ %>
+                            <div class="images swiper-slide">
+                                <img src="http://localhost:5000/uploads/<%= result.path %>" alt="" />
+                                <p class="caption"><%= result.number %>/<%=resultSelect.pictures.length%></p>
+                            </div>
+                            <% } %>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer container-fluid">
+                    <div class="top-footer mt-4 mb-4 d-flex justify-content-between">
+                        <div class="heart-comment-send">
+                            <a href="#" class="heart"><img src="http://localhost:5000/img/font-awesome/heart-sefid.svg"
+                                    alt=""></a>
+                            <a href="./show-comment.html" class="comment"><img
+                                    src="http://localhost:5000/img/font-awesome/comment-sefid.svg" alt=""></a>
+                        </div>
+                        <div class="bookmark">
+                            <img src="http://localhost:5000/img/font-awesome/bookmark-sefid.svg" alt="">
+                        </div>
+                    </div>
+                    <div class="count-of-like">
+                        <p>Count Of Like : <%= resultSelect.countOfLikes %></p>
+                    </div>
+                    <div class="accound-and-description">
+                        <p><%= resultSelect.caption %></p>
+                    </div>
+                    <div class="tags">
+                        <% for(let tag of resultSelect.tags) {%>
+                        <a href="http://localhost:5000/search-tag/<%=tag%>"><%= tag %>#</a><br />
+                        <% } %>
+                    </div>
+                    <div class="footer-footer">
+                        <div class="published-time">
+                            <p>Create Post : <%= resultSelect.created_at %></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <% for(let other of otherPost) { %>
+            <div class="body-section">
+                <div class="body-header container-fluid">
+                    <div class="picture-and-text">
+                        <a href="http://localhost:5000/user-page/<%=other.username%>"><img
+                                src="http://localhost:5000/uploads/<%= other.profile_pic %>" alt=""></a>
+                        <a href="http://localhost:5000/user-page/<%=other.username%>">
+                            <p class="text"> <%= other.username %> </p>
+                        </a>
+                    </div>
+                    <div class="thriple-point" data-tog="false">
+                        <a href="#"><img src="http://localhost:5000/img/font-awesome/3noghte.svg" alt=""></a>
+                    </div>
+                    <div class="thriple-point-modal">
+                        <a href="#">
+                            <p>Report</p>
+                        </a>
+                        <a href="#">
+                            <p>Copy Url</p>
+                        </a>
+                        <a href="#">
+                            <p>Show Notification</p>
+                        </a>
+                        <a href="#">
+                            <p>Share This Post</p>
+                        </a>
+                        <a href="#">
+                            <p>Unfollow</p>
+                        </a>
+                        <a href="#">
+                            <p>Not Show Him</p>
+                        </a>
+                    </div>
+                </div>
+                <div class="body-content">
+                    <div class="swiper-container">
+                        <div class="swiper-wrapper">
+                            <% for(let slider of other.pictures){ %>
+                            <div class="images swiper-slide">
+                                <img src="http://localhost:5000/uploads/<%= slider.path %>" alt="" />
+                                <p class="caption"><%= slider.number %>/<%=other.pictures.length%></p>
+                            </div>
+                            <% } %>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer container-fluid">
+                    <div class="top-footer mt-4 mb-4 d-flex justify-content-between">
+                        <div class="heart-comment-send">
+                            <a href="#" class="heart"><img src="http://localhost:5000/img/font-awesome/heart-sefid.svg"
+                                    alt=""></a>
+                            <a href="./show-comment.html" class="comment"><img
+                                    src="http://localhost:5000/img/font-awesome/comment-sefid.svg" alt=""></a>
+                        </div>
+                        <div class="bookmark">
+                            <img src="http://localhost:5000/img/font-awesome/bookmark-sefid.svg" alt="">
+                        </div>
+                    </div>
+                    <div class="count-of-like">
+                        <p>Count Of Like : <%= other.count_of_likes %></p>
+                    </div>
+                    <div class="accound-and-description">
+                        <p><%= other.caption %></p>
+                    </div>
+                    <div class="tags">
+                        <% for(let tag of other.tags) {%>
+                        <a href="http://localhost:5000/search-tag/<%=tag%>"><%= tag %>#</a><br />
+                        <% } %>
+                    </div>
+                    <div class="footer-footer">
+                        <div class="published-time">
+                            <p>Create Post : <%= other.created_at %></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <% } %>
+        </div>
+        <!-- end of body -->
+        <div id="username" data-toggle="<%=username%>"></div>
+        <div id="userid" data-toggle="<%=userid%>"></div>
+        <div class="last"></div>
+
+        <!-- footer-navbar -->
+        <div class="footer-navbar d-flex justify-content-around">
+            <a href="./home.html" class="home"><img src="http://localhost:5000//img/font-awesome/home.png" alt=""></a>
+            <a href="http://localhost:5000/search" class="search"><img
+                    src="http://localhost:5000/img/font-awesome/search-sefid.png" alt=""></a>
+            <a href="./photo.html" class="photo"><img src="http://localhost:5000/img/font-awesome/plus-square-sefid.png"
+                    alt=""></a>
+            <a href="./activity.html" class="photo"><img src="http://localhost:5000/img/font-awesome/heart-sefid.png"
+                    alt=""></a>
+            <a href="./personal.html" class="personal"><img src="http://localhost:5000/img/font-awesome/user.svg"
+                    alt=""></a>
+        </div>
+        <!-- end of footer-navbar -->
+    </div>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script src="https://unpkg.com/swiper/js/swiper.min.js"></script>
+    <script src="http://localhost:5000/js/home.js" type="text/javascript"></script>
+</body>
+
+</html>

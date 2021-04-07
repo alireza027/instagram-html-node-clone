@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Profile</title>
+
+    <!-- styles -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+    <!-- owl carousel css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+    <link rel="stylesheet" href="http://localhost:5000/css/edit-profile.css">
+
+    <!-- add image icon -->
+    <link rel="icon" type="image/ico" href="http://localhost:5000/img/title-icon/instagram-icon.jpg" />
+</head>
+
+<body>
+    <div class="continer">
+        <div class="log-reg container">
+            <h4 class="display-4 text-center my-4">Edit Your Profile</h4>
+            <form action="/user/<%=result.username%>/edit-profile?_method=PUT" method="POST"
+                enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" name="name" value="<%=result.name%>" id="name" class="form-control">
+                </div>
+
+                <div class="form-group">
+                    <label for="family">family</label>
+                    <input type="text" name="family" value="<%=result.family%>" id="family" class="form-control">
+                </div>
+
+                <div class="form-group mb-4">
+                    <label for="password">Password</label>
+                    <input type="text" name="password" id="password" value="<%=result.password%>" class="form-control">
+                </div>
+
+                <div class="form-group">
+                    <label for="editor1">Bio</label>
+                    <textarea class="form-control text-area" rows="5" name="bio" id="bio">
+                        <%=result.bio%>
+                    </textarea>
+                </div>
+
+                <img class="profilePic thumbnail" src="http://localhost:5000/<%=result.profile_pic%>" alt="">
+                <div class="custom-file mb-4">
+                    <input type="file" name="profile_pic" class="custom-file-input" id="customFile">
+                    <label class="custom-file-label" for="customFile">Image Profile</label>
+                </div>
+
+                <input type="hidden" name="ex_profile_pic" value="<%= result.profile_pic%>" />
+
+                <input type="submit" class="btn btn-outline-primary btn-block" />
+            </form>
+        </div>
+
+        <!-- footer-navbar -->
+        <div class="footer-navbar d-flex justify-content-around">
+            <a href="http://localhost:5000/user/<%=username%>/home" class="home"><img
+                    src="http://localhost:5000//img/font-awesome/home.png" alt=""></a>
+            <a href="http://localhost:5000/search" class="search"><img
+                    src="http://localhost:5000/img/font-awesome/search-sefid.png" alt=""></a>
+            <a href="/user/<%=username%>/new-post" class="photo"><img
+                    src="http://localhost:5000/img/font-awesome/plus-square-sefid.png" alt=""></a>
+            <a href="/activity/<%=username%>" class="photo"><img
+                    src="http://localhost:5000/img/font-awesome/heart-sefid.png" alt=""></a>
+            <a href="/user/<%=username%>" class="personal"><img
+                    src="http://localhost:5000/img/font-awesome/user-sefid.png" alt=""></a>
+        </div>
+        <!-- end of footer-navbar -->
+    </div>
+
+    <!-- scripts -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script src="//cdn.ckeditor.com/4.13.1/basic/ckeditor.js"></script>
+    <script src="http://localhost:5000/js/edit-profile.js"></script>
+</body>
+
+</html>

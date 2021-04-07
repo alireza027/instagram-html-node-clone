@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Activity</title>
+
+    <!-- styles -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+    <!-- owl carousel css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.0/dropzone.min.css">
+
+    <!-- add image icon -->
+    <link rel="icon" type="image/ico" href="http://localhost:5000/img/title-icon/instagram-icon.jpg" />
+
+
+    <link rel="stylesheet" href="http://localhost:5000/css/activity.css" />
+</head>
+
+<body>
+
+    <div class="continer">
+        <!-- start activity -->
+        <div class="activity container-fluid mt-3">
+
+            <div class="item mt-4">
+                <h4 class="display-4 text-center">Your Last Likes</h4>
+                <% if(comments.length > 0){ %>
+                <ul class="content list-group list-group-flush">
+                    <% for(let comment of comments){ %>
+                    <li class="list-group-item list-group-item-action text-center border border-success mb-3 mt-3">
+                        <h3 class="mt-3">
+                            <a href="http://localhost:5000/user-page/<%=comment.comment_user%>/<%=comment.comment_post
+                                %>" class="btn btn-danger text-white">Show</a>
+                            <span> || <%= comment.comment_user
+                                %> || </span>
+                            <span><%= comment.created_at %> </span>
+                        </h3>
+                    </li>
+                    <% } %>
+                </ul>
+                <% } else { %>
+                <h5 class="mt-3 text-center">Notting Liked</h5>
+                <% } %>
+            </div>
+
+            <div class="item mt-4">
+                <h4 class="display-4 text-center">Your Last comments</h4>
+                <% if(comments.length > 0){ %>
+                <ul class="content list-group list-group-flush">
+                    <% for(let comment of comments){ %>
+                    <li class="list-group-item list-group-item-action text-center border border-primary mb-3 mt-3">
+                        <h3 class="mt-3">
+                            <a href="http://localhost:5000/user-page/<%=comment.comment_user%>/<%=comment.comment_post
+                                %>" class="btn btn-danger text-white">Show</a>
+                            <span> || <%= comment.comment_user
+                                %> || </span>
+                            <span><%= comment.created_at %> </span>
+                        </h3>
+                    </li>
+                    <% } %>
+                </ul>
+                <% } else { %>
+                <h5 class="mt-3 text-center">Notting Bookmarks</h5>
+                <% } %>
+            </div>
+
+            <div class="item mt-4">
+                <h4 class="display-4 text-center">Your Last Bookmarks</h4>
+                <% if(bookmarks.length > 0){ %>
+                <ul class="content list-group list-group-flush">
+                    <% for(let bookmark of bookmarks){ %>
+                    <li class="list-group-item list-group-item-action text-center border border-danger mb-3 mt-3">
+                        <h3 class="mt-3">
+                            <a href="http://localhost:5000/user-page/<%=bookmark.bookmarked_user%>/<%=bookmark.bookmarked_post
+                                %>" class="btn btn-danger text-white">Show</a>
+                            <span> || <%= bookmark.bookmarked_user
+                                %> || </span>
+                            <span><%= bookmark.created_at %> </span>
+                        </h3>
+                    </li>
+                    <% } %>
+                </ul>
+                <% } else { %>
+                <h5 class="mt-3 text-center">Notting Bookmarks</h5>
+                <% } %>
+            </div>
+            <div class="item last"></div>
+        </div>
+
+
+        <!-- end of activity -->
+
+        <!-- footer-navbar -->
+        <div class="footer-navbar d-flex justify-content-around">
+            <a href="http://localhost:5000/user/<%=username%>/home" class="home"><img
+                    src="http://localhost:5000//img/font-awesome/home.png" alt=""></a>
+            <a href="http://localhost:5000/search" class="search"><img
+                    src="http://localhost:5000/img/font-awesome/search-sefid.png" alt=""></a>
+            <a href="/user/<%=username%>/new-post" class="photo"><img
+                    src="http://localhost:5000/img/font-awesome/plus-square-sefid.png" alt=""></a>
+            <a href="/activity/<%=username%>" class="photo"><img
+                    src="http://localhost:5000/img/font-awesome/heart-sefid.svg" alt=""></a>
+            <a href="/user/<%=username%>" class="personal"><img
+                    src="http://localhost:5000/img/font-awesome/user-sefid.png" alt=""></a>
+        </div>
+        <!-- end of footer-navbar -->
+
+
+    </div>
+    <!-- scripts -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.0/dropzone.min.js"></script>
+    <script src="http://localhost:5000/js/activity.js" type="text/javascript"></script>
+</body>
+
+</html>

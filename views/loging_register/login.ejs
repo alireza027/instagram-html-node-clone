@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+
+    <!-- styles -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+    <!-- owl carousel css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+
+    <!-- add image icon -->
+    <link rel="icon" type="image/ico" href="http://localhost:5000/img/title-icon/instagram-icon.jpg" />
+    <style>
+        input[type=text] {
+            text-align: left;
+            direction: rtl;
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <div class="continer">
+        <% if(error == "true") { %>
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <strong>Username Or Password Is Not True</strong>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <% } %>
+        <div class="log-reg container">
+            <h4 class="display-4 text-center my-4">Login Form</h4>
+            <form action="/login-user" method="POST">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" name="email" id="email" placeholder="Please Enter email" class="form-control"
+                        autocomplete="on">
+                </div>
+
+                <div class="form-group mb-4">
+                    <label for="password">Password</label>
+                    <input type="password" name="password" id="password" placeholder="Please Enter Password"
+                        class="form-control" autocomplete="on">
+                </div>
+                <a href="http://localhost:5000/register-user" class="mb-3 d-block">Do You Not a Account? Register</a>
+                <input type="submit" class="btn btn-outline-primary btn-block" />
+            </form>
+        </div>
+    </div>
+
+    <!-- scripts -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+</body>
+
+</html>

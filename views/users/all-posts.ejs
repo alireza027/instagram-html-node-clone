@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Post</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+    <!-- owl carousel css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+
+    <!-- add image icon -->
+    <link rel="icon" type="image/ico" href="http://localhost:5000/img/title-icon/instagram-icon.jpg" />
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+    <link rel="stylesheet" href="http://localhost:5000/css/home.css">
+
+    <style>
+        body,
+        html {
+            direction: ltr;
+        }
+
+        .last {
+            margin-bottom: 120px;
+        }
+
+        #posts_filter {
+            display: none;
+        }
+
+        #posts_length {
+            display: none;
+        }
+
+        #posts_info {
+            display: none;
+        }
+
+        .footer-navbar {
+            direction: rtl !important;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container-fluid mt-3">
+        <h4 class="display-4 text-center mb-4">All Post</h4>
+
+        <table id="posts" class="table text-center table-striped table-bordered ">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>CountOfLikes</th>
+                    <th>CountOfComments</th>
+                    <th>Tags</th>
+                    <th>Image</th>
+                    <th>Created</th>
+                    <th>Buttons</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% for(let result of results) {%>
+                <tr>
+                    <td><%= result.title%></td>
+                    <td><%= result.countOfLikes%></td>
+                    <td><%= result.countOfComments%></td>
+                    <td><%= result.tags%></td>
+                    <td><img src="http://localhost:5000/uploads/<%= result.pictures[0].path %>"
+                            style="width:70px;height:70px" alt="" class="img-thumbnail"></td>
+                    <td><%= result.created%></td>
+                    <td>
+                        <a href="/user/<%=result.username%>/show-post/<%= result.id %>"
+                            class="btn btn-warning text-white mb-2">Show</a>
+                        <form action="/user/<%=result.username%>/show-post/<%= result.id %>?_method=DELETE"
+                            method="POST">
+                            <button href="#" class="btn btn-danger text-white mb-2">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+                <% } %>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="last"></div>
+
+    <!-- footer-navbar -->
+    <div class="footer-navbar d-flex justify-content-around">
+        <a href="http://localhost:5000/user/<%=username%>/home" class="home"><img
+                src="http://localhost:5000//img/font-awesome/home.png" alt=""></a>
+        <a href="http://localhost:5000/search" class="search"><img
+                src="http://localhost:5000/img/font-awesome/search-sefid.png" alt=""></a>
+        <a href="/user/<%=username%>/new-post" class="photo"><img
+                src="http://localhost:5000/img/font-awesome/plus-square-sefid.png" alt=""></a>
+        <a href="/activity/<%=username%>" class="photo"><img
+                src="http://localhost:5000/img/font-awesome/heart-sefid.png" alt=""></a>
+        <a href="/user/<%=username%>" class="personal"><img src="http://localhost:5000/img/font-awesome/user-sefid.png"
+                alt=""></a>
+    </div>
+    <!-- end of footer-navbar -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#posts').DataTable();
+        });
+    </script>
+
+</body>
+
+</html>

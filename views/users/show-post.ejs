@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%=result.title%></title>
+    <!-- styles -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://unpkg.com/swiper/css/swiper.min.css">
+    <link rel="stylesheet" href="http://localhost:5000/css/show-post.css" />
+
+    <!-- add image icon -->
+    <link rel="icon" type="image/ico" href="http://localhost:5000/img/title-icon/instagram-icon.jpg" />
+    <style>
+        .footer-navbar {
+            direction: rtl !important;
+        }
+
+        .images img {
+            width: 100% !important;
+            height: 100% !important;
+            cursor: pointer;
+        }
+
+        .last {
+            margin-bottom: 120px;
+        }
+
+        @media(max-width:600px) {
+            .swiper-container {
+                width: 100% !important;
+                height: 350px;
+            }
+        }
+
+        @media(min-width:600px) {
+            .swiper-container {
+                width: 100% !important;
+                height: 450px;
+            }
+        }
+
+        @media(min-width:992px) {
+            .swiper-container {
+                width: 100% !important;
+                height: 550px;
+            }
+        }
+
+        @media(min-width:1200px) {
+            .swiper-container {
+                width: 100% !important;
+                height: 600px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <p class="cpt" data-toggle="<%=result.caption%>"></p>
+    <div class="continer">
+        <div>
+            <h4 class="display-4 container-fluid my-4 text-center">Show <%= result.title %> Post</h4>
+            <div class="carousel">
+                <div class="swiper-container">
+                    <div class="swiper-wrapper">
+                        <% for(let pic of result.pictures){ %>
+                        <div class="item images swiper-slide">
+                            <img src="http://localhost:5000/uploads/<%= pic.path %>" alt="">
+                            <div class="count-page">
+                                <p> <%= pic.number %> / <%=result.pictures.length%></p>
+                            </div>
+                        </div>
+                        <% } %>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content">
+                <div class="title ">
+                    <h3><%= result.title %></h3>
+                </div>
+
+                <div class="caption"></div>
+                <div class="likes-count text-right">Likes Count : <%= countOfLikes %></div>
+                <div class="comment-count text-right">Comment Count : <%= countOfComments %></div>
+                <h6 class="created">This Post Created : <%=result.created_at%></h6>
+
+            </div>
+
+        </div>
+
+        <!-- footer-navbar -->
+        <div class="footer-navbar d-flex justify-content-around">
+            <a href="/user/<%=username%>/home" class="home"><img src="http://localhost:5000//img/font-awesome/home.png"
+                    alt=""></a>
+            <a href="http://localhost:5000/search" class="search"><img
+                    src="http://localhost:5000/img/font-awesome/search-sefid.png" alt=""></a>
+            <a href="/user/<%=username%>/new-post" class="photo"><img
+                    src="http://localhost:5000/img/font-awesome/plus-square-sefid.png" alt=""></a>
+            <a href="/activity/<%=username%>" class="photo"><img
+                    src="http://localhost:5000/img/font-awesome/heart-sefid.png" alt=""></a>
+            <a href="http://localhost:5000/user/<%=username%>" class="personal"><img
+                    src="http://localhost:5000/img/font-awesome/user-sefid.png" alt=""></a>
+        </div>
+        <!-- end of footer-navbar -->
+    </div>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script src="https://unpkg.com/swiper/js/swiper.min.js"></script>
+    <script src="http://localhost:5000/js/show-post.js"></script>
+    <script>
+        // siper slider
+        var mySwiper = new Swiper('.swiper-container', {
+            direction: 'horizontal',
+            loop: false,
+            speed: 300,
+            effect: "cube"
+        })
+
+    </script>
+</body>
+
+</html>

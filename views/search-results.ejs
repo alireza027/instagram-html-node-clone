@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search</title>
+
+    <!-- styles -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+
+    <link rel="stylesheet" href="http://localhost:5000/css/search.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+
+    <!-- add image icon -->
+    <link rel="icon" type="image/ico" href="http://localhost:5000/img/title-icon/instagram-icon.jpg" />
+</head>
+
+<body>
+    <div class="continer">
+        <!-- start random-search -->
+        <h3 class="display-4 my-4 text-center">Show Result For <%= tag %></h3>
+        <div class="random-search container-fluid">
+            <div class="random-items-1 last d-flex justify-content-between flex-wrap">
+
+            </div>
+        </div>
+        <div class="container-fluid">
+            <button class="btn btn-primary btn-block more-button ">More...</button>
+        </div>
+    </div>
+    <!-- end of random-search -->
+
+
+    <!-- footer-navbar -->
+    <div class="footer-navbar d-flex justify-content-around">
+        <a href="/user/<%=username%>/home" class="home"><img src="http://localhost:5000//img/font-awesome/home.png"
+                alt=""></a>
+        <a href="http://localhost:5000/search" class="search"><img
+                src="http://localhost:5000/img/font-awesome/search-sefid.png" alt=""></a>
+        <a href="/user/<%=username%>/new-post" class="photo"><img
+                src="http://localhost:5000/img/font-awesome/plus-square-sefid.png" alt=""></a>
+        <a href="/activity/<%=username%>" class="photo"><img
+                src="http://localhost:5000/img/font-awesome/heart-sefid.png" alt=""></a>
+        <a href="http://localhost:5000/user/<%=username%>" class="personal"><img
+                src="http://localhost:5000/img/font-awesome/user-sefid.png" alt=""></a>
+    </div>
+    <!-- end of footer-navbar -->
+    </div>
+    <div id="params" data-toggle="<%=tag%>"></div>
+
+    <!-- scripts -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <script src="http://localhost:5000/js/seach.js" type="text/javascript"></script>
+    <script>
+        $(document).ready(function () {
+            let count = 0;
+            let count_of_matched_post = 0;
+            let tag = $('#params').attr('data-toggle');
+            $('.more-button').click(function (e) {
+                e.preventDefault();
+                count += 12;
+                $.ajax({
+                    type: "POST",
+                    url: `/search-tag/${tag}`,
+                    data: {
+                        count: count
+                    }, success: function (data) {
+                        if (data.length < count) {
+                            $('.more-button').css("display", 'none');
+                            $('.random-items-1').css('margin-bottom', '100px');
+                        } else {
+                            $('.more-button').css("display", 'block');
+                            $('.random-items-1').css('margin-bottom', '0');
+                            $('.more-button').css('margin-bottom', '120px');
+                        }
+                        let html;
+                        document.querySelector('.random-items-1').innerHTML = '';
+                        data.forEach((dt) => {
+                            document.querySelector('.random-items-1').innerHTML += `<div><a href="/user-page/${dt.username}/${dt.id}"><img src="http://localhost:5000/uploads/${dt.search_post.pictures[0].path}" alt="" /></div></a>`;
+                        })
+                    },
+                    error: function (err) {
+                        console.log(err);
+                    }
+                })
+            });
+            $('.more-button').click();
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,72 @@
+=========================== users ===========================
+1-id
+2-name
+3-family
+4-username
+5-email
+6-password
+7-profile-picure
+8-bio
+9-create_user
+10-update_user
+11-url_slug
+12-posts
+	1-id
+	2-title
+	3-content
+	4-pictures
+		1-id
+		2-address
+		3-number
+	5-count of likes
+	6-comments
+	7-count of comments
+	8-count of bookmarks
+	9-tags
+	10-created_at
+	11-updated_at
+	12-url_slug
+13-story
+	1-id
+	2-expire_time
+	3-title
+	4-picture
+	5-url_slug
+	6-created_at
+	7-updated_at
+14-followers
+	1-id
+	2-users_id
+		1-id
+		2-username
+		3-picture
+		4-url_slug
+	3-created_at
+	4-updated_at
+15-followers
+	1-id
+	2-users_id
+		1-id
+		2-username
+		3-picture
+		4-url_slug
+	3-created_at
+	4-updated_at
+16-bookmarks
+	1-id
+	2-post_id
+17-comment
+	1-id
+	2-post_id
+18-likes
+	1-id
+	post_id
+19-chats
+	1-chatitem
+		1-id
+		2-user_id
+		3-chats
+
+=========================== All Post ===========================
+1-id
+2-user_id

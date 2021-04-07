@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= result.username %></title>
+
+    <!-- styles -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+    <!-- owl carousel css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+    <link rel="stylesheet" href="http://localhost:5000/css/personal.css" />
+
+    <!-- add image icon -->
+    <link rel="icon" type="image/ico" href="http://localhost:5000/img/title-icon/instagram-icon.jpg" />
+</head>
+
+<body>
+
+    <div class="continer">
+        <!-- start header-top -->
+        <div class="header-top d-flex justify-content-between container-fluid">
+            <div class="user-id">
+                <p><%= result.username %></p>
+            </div>
+            <div class="thriple-point" data-tog="false">
+                <a href="#"><img src="http://localhost:5000/img/font-awesome/3noghte.svg" alt=""></a>
+            </div>
+            <div class="thriple-point-modal">
+                <a href="/user/<%=result.username%>/all-post">
+                    <p>All Post</p>
+                </a>
+                <a href="/user/<%=result.username%>/new-post">
+                    <p>New Post</p>
+                </a>
+                <a href="/user/<%=result.username%>/bookmarks">
+                    <p>Your Bookmark</p>
+                </a>
+                <a href="/session-destroy">
+                    <p>Signup</p>
+                </a>
+            </div>
+            <!-- end of header-top -->
+        </div>
+
+        <!-- start post-follow-following -->
+        <div class="post-follow-following container-fluid">
+            <div class="post-follow-following-container">
+                <div class="post-item"><img src="http://localhost:5000/uploads/<%=result.profile_pic%>" alt=""></div>
+                <div class="post-item">
+                    <div class="count-post">
+                        <h3><%= result.postCount %></h3>
+                        <h3>Posts</h3>
+                    </div>
+                </div>
+                <div class="post-item">
+                    <div class="count-followers">
+                        <h3><%= result.followersCount %></h3>
+                        <h3>Followers</h3>
+                    </div>
+                </div>
+                <div class="post-item">
+                    <div class="count-following">
+                        <h3><%= result.followingCount %></h3>
+                        <h3>Following</h3>
+                    </div>
+                </div>
+            </div>
+            <span id="span_data_bio" data-bio="<%=result.bio%>"></span>
+            <div class="bio" id="bio">
+
+            </div>
+
+            <div class="update">
+
+                <a href="/user/<%=result.username%>/edit-profile"
+                    class="btn btn-danger btn-block text-white btn-lg">Edit Your Profile</a>
+            </div>
+            <hr>
+        </div>
+        <!-- end of post-follow-following -->
+
+
+        <!-- start all-post -->
+        <div class="all-post container-fluid" style="margin-bottom:110px;">
+            <div class="post-item">
+                <h3 class="display-4">Your All Posts</h3>
+                <% if(result.postCount <= 0){ %>
+                <a href="/user/<%=result.username%>/new-post" class="btn btn-primary btn-lg btn-block">Create A New
+                    Post</a>
+                <% } else { %>
+                <div class="item d-flex justify-content-around flex-wrap">
+                    <% for(let post of result.posts){ %>
+                    <div class="mb-5"><a href="/user/<%=result.username%>/show-post/<%=post.id%>"><img
+                                class="img-thumbnail" src="http://localhost:5000/uploads/<%= post.pictures[0].path %>"
+                                alt=""></a></div>
+                    <% } %>
+                </div>
+                <% } %>
+
+            </div>
+        </div>
+        <!-- end of all-post -->
+
+
+        <!-- footer-navbar -->
+        <div class="footer-navbar d-flex justify-content-around">
+            <a href="http://localhost:5000/user/<%=result.username%>/home" class="home"><img
+                    src="http://localhost:5000//img/font-awesome/home.png" alt=""></a>
+            <a href="http://localhost:5000/search" class="search"><img
+                    src="http://localhost:5000/img/font-awesome/search-sefid.png" alt=""></a>
+            <a href="/user/<%=result.username%>/new-post" class="photo"><img
+                    src="http://localhost:5000/img/font-awesome/plus-square-sefid.png" alt=""></a>
+            <a href="/activity/<%=result.username%>" class="photo"><img
+                    src="http://localhost:5000/img/font-awesome/heart-sefid.png" alt=""></a>
+            <a href="/user/<%=result.username%>" class="personal"><img
+                    src="http://localhost:5000/img/font-awesome/user.svg" alt=""></a>
+        </div>
+        <!-- end of footer-navbar -->
+    </div>
+    <!-- scripts -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <script src="//cdn.ckeditor.com/4.13.1/basic/ckeditor.js"></script>
+    <script src="http://localhost:5000/js/personal.js" type="text/javascript"></script>
+</body>
+
+</html>

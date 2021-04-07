@@ -1,0 +1,133 @@
+/* start css-reset */
+*
+{
+    margin:0;
+    padding:0;
+    outline:0;
+    border:0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+html,body{
+    direction: rtl;
+}
+
+body::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	background-color: #F5F5F5;
+	border-radius: 10px;
+}
+
+body::-webkit-scrollbar
+{
+	width: 8px;
+	background-color: #F5F5F5;
+}
+
+body::-webkit-scrollbar-thumb
+{
+	border-radius: 10px;
+    background-image: -webkit-gradient(linear,right top,left bottom,
+	color-stop(0.44, #6ED8CC),
+	color-stop(0.12, #0F5076));
+}
+
+a{
+    text-decoration:none;
+}
+
+a:hover{
+    text-decoration:none;
+}
+/* end of css-reset */
+
+
+/* start top-header */
+
+.top-header{
+    margin-top:30px;
+}
+
+.top-header h4{
+    color:#CFCCCC;
+    text-align:center;
+    margin-bottom:30px;
+}
+.top-header .search-box{
+    width:100%;
+    height:auto;
+    position: relative;
+    direction: ltr;
+}
+
+.top-header .search-box input{
+    padding-left:40px!important;
+}
+
+.top-header .search-box img{
+    position: absolute;
+    top:16px;
+    left:30px;
+    width:20px;
+    height:20px;
+}
+/* end of top-header */
+
+
+/* start body-content */
+.body-content .body-content-item{
+    margin-bottom:20px;
+}
+.body-content .body-content-item img{
+    width:80px;
+    height:80px;
+    border-radius:100%;
+    border:2px solid orangered;
+}
+
+.body-content .body-content-item div .content{
+    margin-top:5px;
+    margin-right:20px;
+}
+
+.body-content .body-content-item div .content a{
+    color:#000;
+}
+
+
+.body-content .body-content-item .content p:nth-child(2){
+    color: #CFCCCC;
+    font-weight:bold;
+    font-size:14px;
+}
+
+.body-content .body-content-item .show-me {
+    transition:all 0.2s ease-out;
+}
+
+.last{
+    margin-bottom:110px;
+}
+/* end of body-content */
+
+/* start footer-navbar */
+.footer-navbar{
+    width:100%;
+    height:auto;
+    margin:10px auto 0;
+    border-top:1px solid #CFCCCC;
+    box-shadow:0 0 2px 0px #CFCCCC;
+    background: #FFF;
+    position: fixed;
+    bottom: 0;
+    left:0;
+}
+
+
+.footer-navbar img{
+    width:50px;
+    height:50px;
+    margin:20px auto;
+}
+/* end of footer-navbar */

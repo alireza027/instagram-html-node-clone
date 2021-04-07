@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search</title>
+
+    <!-- styles -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+    <!-- owl carousel css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+    <link rel="stylesheet" href="http://localhost:5000/css/search.css" />
+
+    <!-- add image icon -->
+    <link rel="icon" type="image/ico" href="http://localhost:5000/img/title-icon/instagram-icon.jpg" />
+
+    <style>
+        .search-button {
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="continer">
+        <!-- start search-box -->
+        <form action="http://localhost:5000/search-url" method="GET" class="search-box container-fluid">
+            <input type="text" placeholder="Enter Username For To Search" name="search"
+                class="form-control form-control-lg" />
+            <button type="submit"><img src="http://localhost:5000/img/font-awesome/search-sefid.png"
+                    class="search-button" alt=""></button>
+    </div>
+    <!-- end of search-box -->
+
+    <!-- start tags -->
+    <div class="tags owl-carousel container-fluid mb-4">
+        <p><a href="http://localhost:5000/search-tag/shop">Shop</a></p>
+        <p><a href="http://localhost:5000/search-tag/game">Game</a></p>
+        <p><a href="http://localhost:5000/search-tag/play">Play</a></p>
+        <p><a href="http://localhost:5000/search-tag/pc">PC</a></p>
+        <p><a href="http://localhost:5000/search-tag/color">Color</a></p>
+        <p><a href="http://localhost:5000/search-tag/name">Name</a></p>
+        <p><a href="http://localhost:5000/search-tag/family">Family</a></p>
+        <p><a href="http://localhost:5000/search-tag/person">Person</a></p>
+        <p><a href="http://localhost:5000/search-tag/danger">Danger</a></p>
+        <p><a href="http://localhost:5000/search-tag/warning">Warning</a></p>
+        <p><a href="http://localhost:5000/search-tag/dance">Dance</a></p>
+        <p><a href="http://localhost:5000/search-tag/summer">Summer</a></p>
+        <p><a href="http://localhost:5000/search-tag/winter">Winter</a></p>
+        <p><a href="http://localhost:5000/search-tag/fall">Fall</a></p>
+        <p><a href="http://localhost:5000/search-tag/programming">Programming</a></p>
+        <p><a href="http://localhost:5000/search-tag/graphic">Graphic</a></p>
+    </div>
+    <!-- end of tags -->
+
+
+    <!-- start random-search -->
+    <div class="random-search container-fluid">
+        <div class="random-items-1 last d-flex justify-content-between flex-wrap">
+
+        </div>
+    </div>
+    <div class="container-fluid">
+        <button class="btn btn-primary btn-block more-button ">More...</button>
+    </div>
+    </div>
+    <!-- end of random-search -->
+
+
+    <!-- footer-navbar -->
+    <div class="footer-navbar d-flex justify-content-around">
+        <a href="/user/<%=username%>/home" class="home"><img src="http://localhost:5000//img/font-awesome/home.png"
+                alt=""></a>
+        <a href="http://localhost:5000/search" class="search"><img
+                src="http://localhost:5000/img/font-awesome/search.svg" alt=""></a>
+        <a href="/user/<%=username%>/new-post" class="photo"><img
+                src="http://localhost:5000/img/font-awesome/plus-square-sefid.png" alt=""></a>
+        <a href="/activity/<%=username%>" class="photo"><img
+                src="http://localhost:5000/img/font-awesome/heart-sefid.png" alt=""></a>
+        <a href="http://localhost:5000/user/<%=username%>" class="personal"><img
+                src="http://localhost:5000/img/font-awesome/user-sefid.png" alt=""></a>
+    </div>
+    <!-- end of footer-navbar -->
+    </div>
+
+    <!-- scripts -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <script src="http://localhost:5000/js/seach.js" type="text/javascript"></script>
+    <script>
+        $(document).ready(function () {
+            let count = 0;
+            $('.more-button').click(function (e) {
+                e.preventDefault();
+                count += 12;
+                $.ajax({
+                    type: "POST",
+                    url: "/srch",
+                    data: {
+                        count: count
+                    }, success: function (data) {
+                        console.log(data.length < count);
+                        if (data.length < count) {
+                            $('.more-button').css("display", 'none');
+                            $('.random-items-1').css('margin-bottom', '100px');
+                        } else {
+                            $('.more-button').css("display", 'block');
+                            $('.random-items-1').css('margin-bottom', '0');
+                            $('.more-button').css('margin-bottom', '120px');
+                        }
+                        let html;
+                        document.querySelector('.random-items-1').innerHTML = '';
+                        data.forEach((dt) => {
+                            document.querySelector('.random-items-1').innerHTML += `<div><a href="/user-page/${dt.username}/${dt.id}"><img src="http://localhost:5000/uploads/${dt.pictures.path}" alt="" /></div></a>`;
+                        })
+                    },
+                    error: function (err) {
+                        console.log(err);
+                    }
+                })
+            });
+            $('.more-button').click();
+        })
+    </script>
+</body>
+
+</html>

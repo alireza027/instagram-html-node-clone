@@ -1,0 +1,348 @@
+/* start css-reset */
+*
+{
+    margin:0;
+    padding:0;
+    outline:0;
+    border:0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	background-color: #F5F5F5;
+	border-radius: 10px;
+}
+
+body::-webkit-scrollbar
+{
+	width: 8px;
+	background-color: #F5F5F5;
+}
+
+body::-webkit-scrollbar-thumb
+{
+	border-radius: 10px;
+    background-image: -webkit-gradient(linear,right top,left bottom,
+	color-stop(0.44, #6ED8CC),
+	color-stop(0.12, #0F5076));
+}
+
+html,body{
+    direction: rtl;
+}
+
+a{
+    text-decoration:none;
+}
+
+a:hover{
+    text-decoration:none;
+}
+/* end of css-reset */
+
+
+
+/* start top-header */
+.top-header
+{
+    width:100%;
+    height:auto;
+    padding-top:8px;
+    padding-bottom:8px;
+    border-bottom:1px solid #CFCCCC;
+    box-shadow:0 0 2px 0px #CFCCCC;
+}
+
+.top-header .all-top-header {
+    width:100%;
+    height:auto;
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.top-header .add-picture{
+    margin-top: 5px;
+    width:40px;
+    height:40px;
+    height:auto;
+}
+
+.top-header .send-and-text{
+    display: flex;
+    justify-content: left;
+    margin-top:5px;
+}
+.top-header .send-and-text .text-insta p{
+    margin-left:12px;
+    font-weight:bold;
+    font-style: italic;
+    font-size: 20px;
+    letter-spacing:1.75px;
+    color:#918989;
+}
+/* end of top-header */
+
+
+
+/* start body */
+.body{
+    width:100%;
+    height:auto;
+}
+
+.body .body-section{
+    width:100%;
+    /* margin-bottom:50px; */
+    position: relative;
+}
+
+.body .body-section .body-section-comment{
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.9);
+    z-index:10000;
+    /* position: absolute;
+    top:50%;
+    left:50%; */
+    transform: translate(-50%,-50%);
+    overflow-y:scroll;
+    position: relative;
+}
+
+ .body .body-section .body-section-comment .close-button{
+    width:40px;
+    height:40px;
+    background:rgba(240,240,240,0.9);
+    color:#FFF;
+    margin-left:20px;
+    border-radius:100%;
+    font-weight:bold;
+    font-size:18px;
+    z-index:10000000;
+} 
+
+
+.body .body-section .body-section-comment::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	background-color: #F5F5F5;
+	border-radius: 10px;
+}
+
+.body .body-section .body-section-comment::-webkit-scrollbar
+{
+	width: 8px;
+	background-color: #F5F5F5;
+}
+
+.body .body-section .body-section-comment::-webkit-scrollbar-thumb
+{
+	border-radius: 10px;
+    background-image: -webkit-gradient(linear,right top,left bottom,
+    color-stop(0.12, #0F5076),
+    color-stop(0.44, #6ED8CC));
+}
+
+.body .body-section .body-section-comment .user-commnet{
+    clear: both;
+}
+
+.body .body-section .body-section-comment .user-commnet{
+    width:100%;
+    height:auto;
+    margin-bottom:25px;
+}
+
+.body .body-section .body-section-comment .user-commnet .intrudoction img{
+    width:45px;
+    height:50px;
+    margin-left:10px;
+}
+
+.body .body-section .body-section-comment .user-commnet .intrudoction a{
+    color:#FFF;
+}
+
+.body .body-section .body-section-comment .user-commnet .comment-text{
+    color:#FFF;
+    margin-top:10px;
+    background:rgba(240,240,240,0.9);
+    font-weight:bold;
+    width:95%;
+    height:auto;
+    line-height:1.75;
+    padding:10px;
+    margin-right:20px;
+    text-align:left;
+    direction:ltr;
+    border-radius:7px;
+}
+
+.body .body-section .body-section-comment .user-commnet .intrudoction h5{
+    margin-top:10px;
+}
+
+.body .body-section .body-section-comment .add-comment{
+    width:100%;
+    margin-bottom:20px;
+}
+
+
+.body .body-section .body-section-comment .add-comment{
+    display: flex;
+    width:90%;
+}
+.body .body-section .body-section-comment .add-comment input{
+    margin-right:5%;
+    direction:rtl;
+    text-align:left;
+}
+
+.body .body-header{
+    width:100%;
+    display: flex;
+    justify-content:space-between;
+    position: relative;
+}
+
+.body .body-header .picture-and-text{
+    height:60px;
+    width:auto;
+    display: flex;
+}
+
+.body .body-header .picture-and-text img{
+    width:60px;
+    height:60px;
+    margin-top:15px;
+    margin-left:3px;
+}
+
+.body .body-header .picture-and-text .text {
+    color:#000;
+    margin-top:30px;
+    margin-right:10px;
+    font-weight:bold;
+    font-size:18px;
+}
+
+.body .body-header .thriple-point {
+    width:18px;
+    height:16px;
+    color:#000;
+    margin-top:15px;
+}
+
+.body .body-section .thriple-point-modal{
+    width:200px;
+    height:auto;
+    padding:15px 15px;
+    border:1px solid #CFCCCC;
+    box-shadow:0 0 1px 0px #CFCCCC;
+    position: absolute;
+    top:25px;
+    left:35px;
+    z-index:100;
+    border-radius:5px;
+    display: none;
+    background:#FFF;
+}
+
+.body .body-section .thriple-point-modal a{
+    color:#918989;
+    font-size:18px;
+    font-weight:bold;
+}
+
+.body .body-content {
+    margin-top:20px;
+    width:100%;
+}
+
+
+.body .body-content .images img {
+    margin-top:10px;
+    height:100%;
+    position: relative;
+}
+
+.body .body-content .images p{
+    position: absolute;
+    top:25px;
+    left:20px;
+    color:#fff;
+    width:60px;
+    height:60px;
+    line-height:55px;
+    text-align:center;
+    border:3px solid #fff;
+    background:#000;
+    font-size:18px;
+    font-weight:bold;
+    border-radius:100%;
+}
+
+.body .body-section .footer {
+    width:100%;
+    height:auto;
+}
+.body .body-section .footer .heart-comment-send img , .body .body-section .footer .bookmark img{
+    width:50px;
+    height:50px;
+    margin:5px 10px 5px 20px;
+}
+
+.body .body-section .footer .count-of-like{
+    text-align:right;
+    margin:5px 20px 5px 20px;
+    font-size:18px;
+    font-weight:bold;
+}
+
+.body .body-section .footer .accound-and-description{
+    color:#000;
+    font-size:18px;
+    line-height:2;
+    text-align:left;
+    direction:ltr!important;
+    padding-left:20px;
+    width:100%;
+    height:auto;
+}
+
+.body .body-section .footer .tags{
+    text-align:right;
+}
+
+.body .body-section .footer .footer-footer .published-time {
+    font-weight:bold;
+    direction:ltr!important;
+    text-align:left;
+    margin:5px 10px 5px 20px;
+}
+
+/* end of body */
+
+/* start footer-navbar */
+.footer-navbar{
+    width:100%;
+    height:auto;
+    border-top:1px solid #CFCCCC;
+    box-shadow:0 0 2px 0px #CFCCCC;
+    background: #FFF;
+    position: fixed;
+    bottom: 0;
+    left:0;
+    z-index: 10001;
+}
+
+
+.footer-navbar img{
+    width:50px;
+    height:50px;
+    margin:20px auto;
+}
+/* end of footer-navbar

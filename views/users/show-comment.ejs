@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comments</title>
+
+    <!-- styles -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+    <!-- owl carousel css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+
+
+    <link rel="stylesheet" href="http://localhost:5000/css/show-comment.css" />
+
+    <!-- add image icon -->
+    <link rel="icon" type="image/ico" href="http://localhost:5000/img/title-icon/instagram-icon.jpg" />
+    <style>
+        .last {
+            margin-bottom: 120px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="continer">
+        <!-- start body-section-comment -->
+        <div class="body-section-comment">
+            <h4 class="display-4 text-center">Commnets</h4>
+            <div class="users-comment container-fluid">
+                <% for(let comment of comments) { %>
+                <% if(comment.comment_user == session_username){ %>
+                <div class="user-commnet">
+                    <div class="intrudoction d-flex">
+                        <a href="http://localhost:5000/user/<%=session_username%>">
+                            <h5>you</h5>
+                        </a>
+                    </div>
+                    <div class="comment-text">
+                        <p>
+                            <%= comment.comment_message %>
+                        </p>
+                    </div>
+                </div>
+                <% } else { %>
+                <div class="user-commnet">
+                    <div class="intrudoction d-flex">
+                        <a href="http://localhost:5000/user-page/<%= comment.comment_user %>">
+                            <h5><%= comment.comment_user %></h5>
+                        </a>
+                    </div>
+                    <div class="comment-text">
+                        <p>
+                            <%= comment.comment_message %>
+                        </p>
+                    </div>
+                </div>
+                <% } %>
+                <% } %>
+            </div>
+
+            <div class="add-comment container-fluid mt-3">
+                <button class="btn btn-primary comment-btn mr-2">Send</button>
+                <input type="text" id="message" placeholder="Enter Your Message" class="form-control" required="true"
+                    name="message" />
+                <input type="hidden" value="<%=session_username%>" id="session_username" name="session_username" />
+                <input type="hidden" value="<%=username%>" id="username" name="username" />
+                <input type="hidden" value="<%=postid%>" id="post" name="post" />
+            </div>
+
+        </div>
+        <!-- end of body-section-comment -->
+
+
+
+        <!-- footer-navbar -->
+        <div class="footer-navbar d-flex justify-content-around">
+            <a href="/user/<%=session_username%>/home" class="home"><img
+                    src="http://localhost:5000//img/font-awesome/home.png" alt=""></a>
+            <a href="http://localhost:5000/search" class="search"><img
+                    src="http://localhost:5000/img/font-awesome/search-sefid.png" alt=""></a>
+            <a href="/user/<%=session_username%>/new-post" class="photo"><img
+                    src="http://localhost:5000/img/font-awesome/plus-square-sefid.png" alt=""></a>
+            <a href="/activity/<%=session_username%>" class="photo"><img
+                    src="http://localhost:5000/img/font-awesome/heart-sefid.png" alt=""></a>
+            <a href="http://localhost:5000/user/<%=session_username%>" class="personal"><img
+                    src="http://localhost:5000/img/font-awesome/user-sefid.png" alt=""></a>
+        </div>
+        <!-- end of footer-navbar -->
+
+        <div class="last"></div>
+    </div>
+
+    <!-- scripts -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.comment-btn').click(function () {
+                let username = $('#username').val();
+                let message = $('#message').val();
+                let username_session = $('#session_username').val();
+                let post = $('#post').val();
+                $.ajax({
+                    type: "PUT",
+                    method: "PUT",
+                    url: `http://localhost:5000/${username}/${post}/comment`,
+                    data: {
+                        username: username_session,
+                        message: message
+                    },
+                    success: function (data) {
+                        window.location.href = `http://localhost:5000/${username}/${post}/comment`;
+                    },
+                    error: function (err) {
+                        console.log(err);
+                    }
+                })
+            })
+        })
+    </script>
+</body>
+
+</html>

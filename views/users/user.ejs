@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%=results.username%></title>
+
+    <!-- styles -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+    <!-- owl carousel css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+
+
+    <link rel="stylesheet" href="http://localhost:5000/css/personal.css" />
+
+    <!-- add image icon -->
+    <link rel="icon" type="image/ico" href="http://localhost:5000/img/title-icon/instagram-icon.jpg" />
+</head>
+
+<body>
+
+    <div class="continer">
+        <!-- start header-top -->
+        <div class="header-top text-center mx-auto">
+            <div class="user-id text-center">
+                <p class="text-center"><%=results.username%></p>
+            </div>
+            <!-- end of header-top -->
+        </div>
+
+
+        <!-- start post-follow-following -->
+        <div class="post-follow-following container-fluid">
+            <div class="post-follow-following-container">
+                <div class="post-item"><img src="http://localhost:5000/uploads/<%=results.profile_pic%>" alt=""></div>
+                <div class="post-item">
+                    <div class="count-post">
+                        <h3><%=results.posts.length%></h3>
+                        <h3>Posts</h3>
+                    </div>
+                </div>
+                <div class="post-item">
+                    <div class="count-followers">
+                        <h3><%=results.followers.length%></h3>
+                        <h3>Followers</h3>
+                    </div>
+                </div>
+                <div class="post-item">
+                    <div class="count-following">
+                        <h3><%=results.following.length%></h3>
+                        <h3>Following</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="bio">
+                <%= results.bio %>
+            </div>
+            <div class="followorunfollow">
+                <% if(follow == 'false'){ %>
+                <button class="container-fluid btn-follow btn btn-primary btn-block text-white">Follow</button>
+                <% } else { %>
+                <button class="container-fluid btn-unfollow btn btn-warning btn-block text-white">UnFollow</button>
+                <% } %>
+            </div>
+            <hr>
+        </div>
+        <!-- end of post-follow-following -->
+
+        <div class="user-name" data-toggle="<%=username%>"></div>
+        <div class="user-session" data-toggle="<%=results.username%>"></div>
+        <!-- start all-post -->
+        <div class="all-post container-fluid" style="margin-bottom:110px;">
+            <div class="post-item">
+                <h3 class="display-4">User All Posts</h3>
+                <div class="item d-flex justify-content-around flex-wrap">
+                    <% for(let post of results.posts){ %>
+                    <div class="mb-4">
+                        <!-- user-page/:username/:postid -->
+                        <a href="http://localhost:5000/user-page/<%= results.username %>/<%= post.id %>">
+                            <img class="img-thumbnail" src="http://localhost:5000/uploads/<%= post.pictures[0].path %>"
+                                alt="">
+                        </a>
+                    </div>
+                    <% } %>
+                </div>
+            </div>
+        </div>
+        <!-- end of all-post -->
+
+
+        <!-- footer-navbar -->
+        <div class="footer-navbar d-flex justify-content-around">
+            <a href="/user/<%=username%>/home" class="home"><img src="http://localhost:5000//img/font-awesome/home.png"
+                    alt=""></a>
+            <a href="http://localhost:5000/search" class="search"><img
+                    src="http://localhost:5000/img/font-awesome/search-sefid.png" alt=""></a>
+            <a href="/user/<%=username%>/new-post" class="photo"><img
+                    src="http://localhost:5000/img/font-awesome/plus-square-sefid.png" alt=""></a>
+            <a href="/activity/<%=username%>" class="photo"><img
+                    src="http://localhost:5000/img/font-awesome/heart-sefid.png" alt=""></a>
+            <a href="http://localhost:5000/user/<%=username%>" class="personal"><img
+                    src="http://localhost:5000/img/font-awesome/user-sefid.png" alt=""></a>
+        </div>
+        <!-- end of footer-navbar -->
+    </div>
+    <!-- scripts -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <script src="http://localhost:5000/js/personal.js" type="text/javascript"></script>
+    <script>
+        $(document).ready(function () {
+            let user = $('.user-session').attr('data-toggle');
+            let user_session = $('.user-name').attr('data-toggle');
+            $('.btn-follow').click(function (e) {
+                $.ajax({
+                    method: "PUT",
+                    type: "PUT",
+                    url: `/user-page/follow/${user}/${user_session}/`,
+                    success: function (data) {
+                        window.location.href = `http://localhost:5000/user-page/${user}`;
+                    }, error: function (err) {
+                        console.log(err);
+                    }
+                })
+            })
+
+            $(".btn-unfollow").click(function (e) {
+                $.ajax({
+                    method: "PUT",
+                    type: "PUT",
+                    url: `/user-page/unfollow/${user}/${user_session}/`,
+                    success: function (data) {
+                        window.location.href = `http://localhost:5000/user-page/${user}`;
+                        // console.log(data);
+                    }, error: function (err) {
+                        console.log(err);
+                    }
+                })
+            })
+        })
+    </script>
+</body>
+
+</html>
